@@ -1,6 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import rich.console
 import constant
-import time
+
+# modules
+import fileio
+import login
 
 def split(command:str)->list[str]:
 	result=command.split(' ')
@@ -10,14 +15,14 @@ def split(command:str)->list[str]:
 class Command_Clear:
 	def __init__(self)->None:
 		self.name='clear'
-		self.long_description='Builtin command: clear\n\nClear the terminal.\n\nUsage: clear'
+		self.long_description='Builtin command: clear\n\nDescription: Clear the terminal.\nUsage: clear'
 	def run(self,args:list[str])->None:
 		console.clear()
 
 class Command_Help:
 	def __init__(self)->None:
 		self.name='help'
-		self.long_description='Builtin command: help\n\nShow helps.\n\nUsage: help [name]'
+		self.long_description='Builtin command: help\n\nDescription: Show helps.\nUsage: help [name]'
 	def run(self,args:list[str])->None:
 		if len(args)==0:
 			print('Available commands:')
@@ -32,7 +37,7 @@ class Command_Help:
 class Command_Exit:
 	def __init__(self)->None:
 		self.name='exit'
-		self.long_description='Builtin command: exit\n\nExit the terminal.\n\nUsage: exit'
+		self.long_description='Builtin command: exit\n\nDescription: Exit the terminal.\nUsage: exit'
 	def run(self,args:list[str])->None:
 		exit(0)
 
@@ -65,6 +70,7 @@ def main()->None:
 
 if __name__=='__main__':
 	console=rich.console.Console()
+	storage={}
 	command_name=[]
 	command_manual=[]
 	command_instance=[]
